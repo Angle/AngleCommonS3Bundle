@@ -4,7 +4,7 @@ namespace Angle\Common\S3Bundle\Services;
 
 use Aws\S3\S3Client;
 
-class AmazonS3
+class AmazonS3Client
 {
     protected $service;
     protected $bucket;
