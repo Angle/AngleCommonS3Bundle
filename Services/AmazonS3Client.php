@@ -11,9 +11,9 @@ class AmazonS3Client
     protected $options;
     protected $bucketExists;
     protected $metadata = array();
-    protected $detectContentType;
+    protected $detectContentType = true;
 
-    public function __construct($amazon_s3_key, $amazon_s3_secret, $amazon_s3_bucket, array $options = array(), $detectContentType = false)
+    public function __construct($amazon_s3_key, $amazon_s3_secret, $amazon_s3_bucket, array $options = array())
     {
         // Create an Amazon S3 client object
         $this->service = S3Client::factory(array(
@@ -31,7 +31,6 @@ class AmazonS3Client
             ),
             $options
         );
-        $this->detectContentType = $detectContentType;
     }
 
     /**
