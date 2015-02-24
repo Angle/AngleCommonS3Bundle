@@ -20,7 +20,9 @@ class AmazonS3Client
             'key'    => $amazon_s3_key,
             'secret' => $amazon_s3_secret
         ));
+
         $this->bucket = $amazon_s3_bucket;
+
         $this->options = array_replace(
             array(
                 'create' => false,
