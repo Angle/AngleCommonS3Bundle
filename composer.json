@@ -1,5 +1,5 @@
 {
-    "name": "angle/angle-common-s3-bundle",
+    "name": "angle/common/s3-bundle",
     "description": "A simple Symfony2 bundle for the API for AWS S3.",
     "type": "symfony-bundle",
     "keywords": [
