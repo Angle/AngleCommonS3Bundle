@@ -97,10 +97,11 @@ class AmazonS3Client
         }
     }
 
-    public function write($key, $content)
+    public function write($key, $content, $contentType=null)
     {
         $this->ensureBucketExists();
         $options = $this->getOptions($key, array('Body' => $content));
+        if ($contentType) $options['ContentType'] = $contentType; // Hotfix: 2015-Apr-15
         /**
          * If the ContentType was not already set in the metadata, then we autodetect
          * it to prevent everything being served up as binary/octet-stream.
