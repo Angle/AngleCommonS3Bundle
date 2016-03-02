@@ -13,7 +13,7 @@ class AmazonS3Client
     protected $metadata = array();
     protected $detectContentType = true;
 
-    public function __construct($amazon_s3_key, $amazon_s3_secret, $amazon_s3_region, $amazon_s3_version, $amazon_s3_bucket, array $options = array())
+    public function __construct($amazon_s3_key, $amazon_s3_secret, $amazon_s3_region, $amazon_s3_bucket, array $options = array())
     {
         // Create an Amazon S3 client object
         $this->service = new S3Client(array(
