@@ -42,7 +42,7 @@
       "symfony/security": "~2.1",
       "symfony/validator": "~2.1",
       "sensio/framework-extra-bundle": "~2.1",
-      "aws/aws-sdk-php": "2.7.*"
+      "aws/aws-sdk-php": ">=2.7.*"
     },
     "suggest": {
     },
