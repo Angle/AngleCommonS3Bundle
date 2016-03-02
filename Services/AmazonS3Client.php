@@ -16,11 +16,11 @@ class AmazonS3Client
     public function __construct($amazon_s3_key, $amazon_s3_secret, $amazon_s3_region, $amazon_s3_version, $amazon_s3_bucket, array $options = array())
     {
         // Create an Amazon S3 client object
-        $this->service = S3Client::factory(array(
+        $this->service = new S3Client(array(
             'key'    => $amazon_s3_key,
             'secret' => $amazon_s3_secret,
             'region' => $amazon_s3_region,
-            'version' => $amazon_s3_version
+            'version' => 'latest'
         ));
 
         $this->bucket = $amazon_s3_bucket;
