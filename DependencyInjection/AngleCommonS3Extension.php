@@ -57,6 +57,28 @@ class AngleCommonS3Extension extends Extension
             'angle_common_s3.amazon_s3.amazon_s3_bucket',
             $config['amazon_s3']['amazon_s3_bucket']
         );
+
+        if (!isset($config['amazon_s3']['amazon_s3_region'])) {
+            throw new \InvalidArgumentException(
+                'The option "angle_common_s3.amazon_s3.amazon_s3_region" must be set.'
+            );
+        }
+
+        $container->setParameter(
+            'angle_common_s3.amazon_s3.amazon_s3_region',
+            $config['amazon_s3']['amazon_s3_region']
+        );
+
+        if (!isset($config['amazon_s3']['amazon_s3_version'])) {
+            throw new \InvalidArgumentException(
+                'The option "angle_common_s3.amazon_s3.amazon_s3_version" must be set.'
+            );
+        }
+
+        $container->setParameter(
+            'angle_common_s3.amazon_s3.amazon_s3_version',
+            $config['amazon_s3']['amazon_s3_version']
+        );
     }
 
     /**
