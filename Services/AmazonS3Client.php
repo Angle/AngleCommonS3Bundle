@@ -17,10 +17,12 @@ class AmazonS3Client
     {
         // Create an Amazon S3 client object
         $this->service = new S3Client(array(
-            'key'    => $amazon_s3_key,
-            'secret' => $amazon_s3_secret,
             'region' => $amazon_s3_region,
-            'version' => 'latest'
+            'version' => 'latest',
+            'credentials' => array(
+                'key' => $amazon_s3_key,
+                'secret'  => $amazon_s3_secret,
+            )
         ));
 
         $this->bucket = $amazon_s3_bucket;
