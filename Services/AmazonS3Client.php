@@ -13,16 +13,12 @@ class AmazonS3Client
     protected $metadata = array();
     protected $detectContentType = true;
 
-    public function __construct($amazon_s3_key, $amazon_s3_secret, $amazon_s3_bucket, $amazon_s3_region, array $options = array())
+    public function __construct($amazon_s3_key, $amazon_s3_secret, $amazon_s3_bucket, array $options = array())
     {
         // Create an Amazon S3 client object
-        $this->service = new S3Client(array(
-            'region' => $amazon_s3_region,
-            'version' => 'latest',
-            'credentials' => array(
-                'key' => $amazon_s3_key,
-                'secret'  => $amazon_s3_secret,
-            )
+        $this->service = S3Client::factory(array(
+            'key'    => $amazon_s3_key,
+            'secret' => $amazon_s3_secret
         ));
 
         $this->bucket = $amazon_s3_bucket;
