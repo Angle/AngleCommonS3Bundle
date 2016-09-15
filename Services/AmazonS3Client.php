@@ -139,14 +139,20 @@ class AmazonS3Client
         return $this->listKeys();
     }
 
-    public function listKeys($prefix = '')
+    public function listKeys($prefix = '', $delimiter = '')
     {
         $options = array('Bucket' => $this->bucket);
+
         if ((string) $prefix != '') {
             $options['Prefix'] = $this->computePath($prefix);
         } elseif (!empty($this->options['directory'])) {
             $options['Prefix'] = $this->options['directory'];
         }
+
+        if ((string) $delimiter != '') {
+            $options['Delimiter'] = $delimiter;
+        }
+
         $keys = array();
         $iter = $this->service->getIterator('ListObjects', $options);
         foreach ($iter as $file) {
