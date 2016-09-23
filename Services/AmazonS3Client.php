@@ -97,11 +97,12 @@ class AmazonS3Client
         }
     }
 
-    public function write($key, $content, $contentType=null)
+    public function write($key, $content, $contentType=null, $attachmentFilename=null)
     {
         $this->ensureBucketExists();
         $options = $this->getOptions($key, array('Body' => $content));
         if ($contentType) $options['ContentType'] = $contentType; // Hotfix: 2015-Apr-15
+        if ($attachmentFilename) $options['ContentDisposition'] = 'attachment; filename=' . $attachmentFilename;
         /**
          * If the ContentType was not already set in the metadata, then we autodetect
          * it to prevent everything being served up as binary/octet-stream.
