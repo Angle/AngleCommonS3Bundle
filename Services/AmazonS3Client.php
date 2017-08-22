@@ -97,6 +97,23 @@ class AmazonS3Client
         }
     }
 
+    public function copy($sourceKey, $targetKey)
+    {
+        $this->ensureBucketExists();
+        $options = $this->getOptions(
+            $targetKey,
+            array(
+                'CopySource' => $this->bucket.'/'.$this->computePath($sourceKey),
+            )
+        );
+        try {
+            $this->service->copyObject($options);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
     public function write($key, $content, $contentType=null, $attachmentFilename=null)
     {
         $this->ensureBucketExists();
