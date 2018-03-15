@@ -1,8 +1,9 @@
 <?php
 namespace Angle\Common\S3Bundle;
 
-use Angle\Common\S3Bundle\DependencyInjection\AngleCommonS3Extension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+
+use Angle\Common\S3Bundle\DependencyInjection\AngleCommonS3Extension;
 
 class AngleCommonS3Bundle extends Bundle
 {
