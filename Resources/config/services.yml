@@ -10,5 +10,5 @@ services:
          class: Angle\Common\S3Bundle\Twig\AmazonS3UrlTwigExtension
          public: false
          arguments: [ "@=container.hasParameter('cdn_prefix_url') ? parameter('cdn_prefix_url') : ''" ]
-             tags:
-                 - { name: twig.extension }
+         tags:
+             - { name: twig.extension }
