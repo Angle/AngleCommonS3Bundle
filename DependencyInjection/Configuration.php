@@ -33,6 +33,9 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('amazon_s3_bucket')
                             ->defaultValue(null)
                         ->end()
+                        ->scalarNode('amazon_s3_region')
+                            ->defaultValue(null)
+                        ->end()
                     ->end()
                 ->end()
             ->end();

@@ -3,6 +3,8 @@
 namespace Angle\Common\S3Bundle\Services;
 
 use Aws\S3\S3Client;
+use Aws\Common\Credentials\Credentials;
+use Aws\S3\Exception\S3Exception;
 
 class AmazonS3Client
 {
@@ -13,14 +15,25 @@ class AmazonS3Client
     protected $metadata = array();
     protected $detectContentType = true;
 
-    public function __construct($amazon_s3_key, $amazon_s3_secret, $amazon_s3_bucket, array $options = array())
+    public function __construct($amazon_s3_key, $amazon_s3_secret, $amazon_s3_bucket, $amazon_s3_region, array $options = array())
     {
-        // Create an Amazon S3 client object
-        $this->service = S3Client::factory(array(
-            'key'    => $amazon_s3_key,
-            'secret' => $amazon_s3_secret
-        ));
+        /** @var Credentials $credentials */
+        $credentials = new Credentials($amazon_s3_key, $amazon_s3_secret);
 
+        if (!($credentials instanceof Credentials)) {
+            throw new \RuntimeException("Credentials were not specified");
+        }
+
+        // Must specify signature version
+        $config = array(
+            'signature' => 'v4',
+            'region'    => $amazon_s3_region
+        );
+
+        $config['credentials'] = $credentials;
+
+        // Create an Amazon S3 client object
+        $this->service = S3Client::factory($config);
         $this->bucket = $amazon_s3_bucket;
 
         $this->options = array_replace(
